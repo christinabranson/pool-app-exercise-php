@@ -11,6 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// See /readme.md for documentation
+
+// Leaderboard
+Route::get('/', 'GameController@leaderboard');
+Route::get('/leaderboard', 'GameController@leaderboard');
+
+// Game management
+Route::get('/game/new', 'GameController@newGamePage');
+Route::post('/game/new', 'GameController@newGame');
+Route::get('/game/edit/{game_id}', 'GameController@editGamePage');
+Route::post('/game/edit/{game_id}', 'GameController@editGame');
+Route::get('/game/winner/{game_id}', 'GameController@winnerGamePage');
+Route::post('/game/winner/{game_id}', 'GameController@winnerGame');
+Route::get('/game/get/{game_id}', 'GameController@getGame');
+Route::delete('/game/delete/{game_id}', 'GameController@deleteGame');
+
+// Player management
+Route::get('/player/new', 'PlayerController@newPlayerPage');
+Route::post('/player/new', 'PlayerController@newPlayer');
+Route::get('/player/edit/{player_id}', 'PlayerController@editPlayerPage');
+Route::post('/player/edit/{player_id}', 'PlayerController@editPlayer');
+Route::get('/player/get/{player_id}', 'PlayerController@getPlayer');
+Route::delete('/player/delete/{player_id}', 'PlayerController@deletePlayer');
