@@ -4,8 +4,8 @@
 
 * Player Create, Read, Update, Delete (CRUD)
 * Game management
-*    * Select players
-*    * Choose winner
+    * Select players
+    * Choose winner
 * Leaderboard of players with the most wins
 * Should be usable on a variety of device sizes (aka Responsive)
 
@@ -17,8 +17,8 @@
 | ---- | ---- | ---- |
 | player_id | increments | ID of player |
 | name | string | Name of player |
-| wins | | Number of player wins |
-| losses | | Number of player losses |
+| wins | integer | Number of player wins |
+| losses | integer | Number of player losses |
 | timestamps |--| Created and modified |
 
 Relationships:
@@ -76,4 +76,12 @@ Relationships:
 
 | File Location | Description | Route |
 | ---- | ---- | ---- | ---- |
-| `resources/views/` | Get home page | `Route::get('/home', 'HomeController@index');` |
+| `resources/views/` | Main page showing leaderboard | `Route::get('/', 'GameController@leaderboard');` |
+
+## To Do
+
+- [x] Add development plan
+- [ ] Add players and games database and models
+- [ ] Fix relationships between database and models
+- [ ] Design and implement views
+- [ ] Add function to autocomplete player names
