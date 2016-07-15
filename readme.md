@@ -45,8 +45,8 @@ Relationships:
 
 | URL | Method | Description | Code |
 | ---- | ---- | ---- | ---- |
-| / | get | Get main page | `Route::get('/', 'GameController@leaderboard');` |
-| /leaderboard | get | Get leaderboard page | `Route::get('/leaderboard', 'GameController@leaderboard');` |
+| / | get | Get main page | `Route::get('/', 'PlayerController@leaderboard');` |
+| /leaderboard | get | Get leaderboard page | `Route::get('/leaderboard', 'PlayerController@leaderboard');` |
 
 ### Game Management
 

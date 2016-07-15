@@ -14,8 +14,8 @@
 // See /readme.md for documentation
 
 // Leaderboard
-Route::get('/', 'GameController@leaderboard');
-Route::get('/leaderboard', 'GameController@leaderboard');
+Route::get('/', 'PlayerController@leaderboard');
+Route::get('/leaderboard', 'PlayerController@leaderboard');
 
 // Game management
 Route::get('/game/new', 'GameController@newGamePage');
