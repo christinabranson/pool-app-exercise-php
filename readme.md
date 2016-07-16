@@ -71,6 +71,7 @@ Relationships:
 | /player/edit/{player_id | post | Edit player action | `Route::post('/player/edit/{player_id}', 'PlayerController@editPlayer);` |
 | /player/get/{player_id} | get | Get player information | `Route::get('/player/get/{player_id}', 'PlayerController@getPlayer');` |
 | /player/delete/{player_id} | delete | Delete player | `Route::delete('/player/delete/{player_id}', 'PlayerController@deletePlayer');` |
+| /player/admin | get | Admin panel to manage players | `Route::get('/player/admin', 'PlayerController@admin');` |
 
 ## Views
 

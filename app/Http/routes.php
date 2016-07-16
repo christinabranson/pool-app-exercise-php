@@ -34,3 +34,4 @@ Route::get('/player/edit/{player_id}', 'PlayerController@editPlayerPage');
 Route::post('/player/edit/{player_id}', 'PlayerController@editPlayer');
 Route::get('/player/get/{player_id}', 'PlayerController@getPlayer');
 Route::delete('/player/delete/{player_id}', 'PlayerController@deletePlayer');
+Route::get('/player/admin', 'PlayerController@admin');
