@@ -25,34 +25,18 @@
     </style>
 </head>
 <body>
+    <a href="https://github.com/christinabranson/pool-app-exercise-php" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     <nav class="top-bar">
         <div class="top-bar-left">
             <ul class="dropdown menu" data-dropdown-menu>
                 <li class="menu-text">
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        Laravel
+                        Pool App Exercise
                     </a>
                 </li>
-                <li><a href="{{ url('/home') }}">Home</a></li>
-            </ul>
-        </div>
-        <div class="top-bar-right">
-            <ul class="dropdown menu" data-dropdown-menu>
-                <!-- Authentication Links -->
-                @if (Auth::guest())
-                <li><a href="{{ url('/login') }}">Login</a></li>
-                <li><a href="{{ url('/register') }}">Register</a></li>
-                @else
-                <li>
-                    <a href="#">
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
-                    <ul class="menu vertical">
-                        <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                    </ul>
-                </li>
-                @endif
+                <li><a href="{{ url('/') }}">Leaderboard</a></li>
+                
             </ul>
         </div>
     </nav>

@@ -5,12 +5,11 @@
     <div class="row">
         <h1>Leaderboard</h1>
         @if (count($players) > 0)
-            <table>
+            <table class="hover">
               <thead>
                 <tr>
                   <th>Rank</th>
                   <th>Name</th>
-                  <th>Id</th>
                   <th>Wins</th>
                   <th>Losses</th>
                 </tr>
@@ -20,8 +19,7 @@
                  <?php $rankCounter = 1; ?>
                  <tr>
                     <td>{{ $rankCounter }}</td>
-                    <td>{{ $player->name }}</td>
-                    <td>{{ $player->player_id }}</td>
+                    <td><a href="{{ url('/player/get/'.$player->player_id) }}">{{ $player->name }}</a></td>
                     <td>{{ $player->wins }}</td>
                     <td>{{ $player->losses }}</td>
                  </tr>

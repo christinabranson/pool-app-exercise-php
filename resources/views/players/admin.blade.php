@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        @if (count($player) > 0)
-        <h1>Get User: {{ $player->name }}</h1>
+        <h1>Manage Users</h1>
+        @if (count($players) > 0)
             <table>
               <thead>
                 <tr>
@@ -16,6 +16,7 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach ($players as $player)
                  <?php $rankCounter = 1; ?>
                  <tr>
                     <td>{{ $rankCounter }}</td>
@@ -25,6 +26,7 @@
                     <td>{{ $player->losses }}</td>
                  </tr>
                  <?php $rankCounter++ ?>
+                @endforeach
               </tbody>
             </table>
         @else
