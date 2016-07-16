@@ -73,7 +73,12 @@ class PlayerController extends Controller
     
     // Get a player
     public function getPlayer($player_id) {
-        $player = Player::find($player_id);
+        
+        Log::debug("getPlayer($player_id)");
+        
+        $player = Player::findOrFail($player_id);
+        
+        var_dump($player->games());
         return view('players.get', ['player' => $player]);
     } // getPlayer
     
