@@ -59,6 +59,7 @@ Relationships:
 | /game/winner/{game_id} | get | Get page to pick game winner | `Route::get('/game/winner/{game_id}', 'GameController@winnerGamePage');` |
 | /game/winner/{game_id} | post | Select game winner action | `Route::post('/game/winner/{game_id}', 'GameController@winnerGame');` |
 | /game/get/{game_id} | get | Get game information | `Route::get('/game/get/{game_id}', 'GameController@getGame');` |
+| /game/list | get | Get list of all games | `Route::get('/game/list', 'GameController@listGames');` |
 | /game/delete/{game_id} | delete | Delete game | `Route::delete('/game/delete/{game_id}', 'GameController@deleteGame');` |
 
 ### Player Management
@@ -70,6 +71,7 @@ Relationships:
 | /player/edit/{player_id} | get | Get page to edit a player | `Route::get('/player/edit/{player_id}', 'PlayerController@editPlayerPage);` |
 | /player/edit/{player_id | post | Edit player action | `Route::post('/player/edit/{player_id}', 'PlayerController@editPlayer);` |
 | /player/get/{player_id} | get | Get player information | `Route::get('/player/get/{player_id}', 'PlayerController@getPlayer');` |
+| /player/delete/{player_id} | get | Get page to delete a player | `Route::get('/player/delete/{player_id}', 'PlayerController@deletePlayerPage');` |
 | /player/delete/{player_id} | delete | Delete player | `Route::delete('/player/delete/{player_id}', 'PlayerController@deletePlayer');` |
 | /player/admin | get | Admin panel to manage players | `Route::get('/player/admin', 'PlayerController@admin');` |
 
@@ -86,3 +88,6 @@ Relationships:
 - [ ] Fix relationships between database and models
 - [ ] Design and implement views
 - [ ] Add function to autocomplete player names
+- [ ] Show rank on leaderboard
+- [ ] Function to show player/game count
+- [ ] 
