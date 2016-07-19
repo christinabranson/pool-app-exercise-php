@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Leaderboard')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -16,6 +18,7 @@
               </thead>
               <tbody>
                 @foreach ($players as $player)
+                <!-- TODO: Make sure player rank works -->
                  <?php $rankCounter = 1; ?>
                  <tr>
                     <td>{{ $rankCounter }}</td>
@@ -30,7 +33,6 @@
         @else
             <p>No players yet! Why don't you <a href="{{ url('player/new') }}">add a player</a>?</p>
         @endif
-
     </div>
 </div>
 @endsection

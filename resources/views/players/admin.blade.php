@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Manage Players')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -8,30 +10,33 @@
             <table>
               <thead>
                 <tr>
-                  <th>Rank</th>
+                  <th>Player Id</th>
                   <th>Name</th>
-                  <th>Id</th>
                   <th>Wins</th>
                   <th>Losses</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($players as $player)
-                 <?php $rankCounter = 1; ?>
                  <tr>
-                    <td>{{ $rankCounter }}</td>
-                    <td>{{ $player->name }}</td>
                     <td>{{ $player->player_id }}</td>
+                    <td><a href="{{ url('/player/get/'.$player->player_id) }}">{{ $player->name }}</a></td>
                     <td>{{ $player->wins }}</td>
                     <td>{{ $player->losses }}</td>
+                    <td>
+                        <a class="button" href="{{ url('/player/get/'.$player->player_id) }}">View Player Info</a>
+                        <a class="success button" href="{{ url('/player/edit/'.$player->player_id) }}">Edit Player</a>
+                        <a class="alert button" href="{{ url('/player/delete/'.$player->player_id) }}">Delete Player</a>
+                    </td>
                  </tr>
-                 <?php $rankCounter++ ?>
                 @endforeach
               </tbody>
             </table>
         @else
-            <p>No players yet! Why don't you <a href="{{ url('player/new') }}">add a player</a>?</p>
+            <p>No players yet!</p>
         @endif
+        <p><a href="{{ url('player/new') }}" class="button expanded">Add a player</a></p>
 
     </div>
 </div>

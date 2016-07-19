@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'New Player')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -10,10 +12,10 @@
             
             <label>
                 Player Name
-                <input name="name" placeholder="Enter player name" />
+                <input type="text" name="name" placeholder="Enter player name" />
             </label>
             
-            <button type="submit" id="submit" class="button">Submit</button>
+            <button type="submit" id="submit" class="button expanded">Submit</button>
             
         </form>
     </div>
