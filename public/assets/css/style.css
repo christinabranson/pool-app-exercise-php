@@ -1,0 +1,45 @@
+body {
+    font-family: 'Lato';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Lato';
+}
+
+.top-bar {
+    background: #fff;
+    border-bottom: 1px solid #000;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.top-bar ul {
+    background: transparent;
+}
+
+section {
+    margin: 0px auto 500px auto;
+}
+
+.player1 {
+    background: red;
+}
+
+.player2 {
+    background: purple;
+}
+
+.player {
+    min-height: 400px;
+}
+
+.player .fa {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 10em;
+}
+
+.versus {}
