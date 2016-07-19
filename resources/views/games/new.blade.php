@@ -9,15 +9,21 @@
 
         <form id="newGame" method="POST" action="{{ url('game/new') }}">
             {{ csrf_field() }}
-            
-            <label>
-                Player 1
-                <input type="text" name="player_1_id" placeholder="Enter player id" />
+
+            <label>Select Player 1
+              <select name="player_1_id">
+                @foreach ($players as $player)
+                    <option value="{{ $player->player_id }}">{{ $player->name }}</option>
+                @endforeach
+              </select>
             </label>
             
-            <label>
-                Player 2
-                <input type="text" name="player_2_id" placeholder="Enter player id" />
+            <label>Select Player 2
+              <select name="player_2_id">
+                @foreach ($players as $player)
+                    <option value="{{ $player->player_id }}">{{ $player->name }}</option>
+                @endforeach
+              </select>
             </label>
             
             <button type="submit" id="submit" class="button expanded">Start New Game</button>
