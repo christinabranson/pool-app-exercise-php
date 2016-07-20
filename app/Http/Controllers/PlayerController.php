@@ -36,7 +36,7 @@ class PlayerController extends Controller
             return 0;
         });
         
-        // add rank
+        // add rank to display on leaderboard
         $rank = 1;
         foreach($sortedPlayers as $player) {
             $player->setRank($rank);

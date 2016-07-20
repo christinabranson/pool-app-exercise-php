@@ -19,10 +19,6 @@
 | name | string | Name of player |
 | timestamps |--| Created and modified |
 
-Relationships:
-
-* A player can have many games
-
 ### games
 
 | Column | Properties | Description |
@@ -32,10 +28,6 @@ Relationships:
 | player_2_id | integer | ID of player 2 |
 | winner_id | integer | ID of winning player |
 | timestamps |--| Created and modified |
-
-Relationships: 
-
-* A game can have two (many) players
 
 ## Routes
 
@@ -72,20 +64,3 @@ Relationships:
 | /player/delete/{player_id} | get | Get page to delete a player | `Route::get('/player/delete/{player_id}', 'PlayerController@deletePlayerPage');` |
 | /player/delete/{player_id} | delete | Delete player | `Route::delete('/player/delete/{player_id}', 'PlayerController@deletePlayer');` |
 | /player/admin | get | Admin panel to manage players | `Route::get('/player/admin', 'PlayerController@admin');` |
-
-## Views
-
-| File Location | Description | Route |
-| ---- | ---- | ---- | ---- |
-| `resources/views/` | Main page showing leaderboard | `Route::get('/', 'GameController@leaderboard');` |
-
-## To Do
-
-- [x] Add development plan
-- [ ] Add players and games database and models
-- [ ] Fix relationships between database and models
-- [ ] Design and implement views
-- [ ] Add function to autocomplete player names
-- [ ] Show rank on leaderboard
-- [ ] Function to show player/game count
-- [ ] Sort winner by maximizing wins and minimizing losses

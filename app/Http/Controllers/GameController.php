@@ -15,6 +15,7 @@ class GameController extends Controller
         
         Log::debug("newGamePage()");
         
+        // get and return players for drop down list
         $players = Player::all();
         
         return view('games.new', ['players' => $players]);
@@ -40,12 +41,15 @@ class GameController extends Controller
         $game->player_2_id = $request->player_2_id;
         // trying this out
         // getting SQLSTATE[23502]: Not null violation when deploying to heroku
+        // winner will be set in winner function
         $game->winner_id = 0;
         $game->save();
         
         // Redirect to page to choose game winner
         $game_id = $game->game_id;
         Log::debug("new game id: " . $game_id);
+        
+        // return page to choose the winner of the game
         return redirect('/game/winner/'.$game_id);
     } //newGame
     
@@ -55,8 +59,8 @@ class GameController extends Controller
         
         $game = Game::findOrFail($game_id);
         
+        // get and return players for drop down list
         $players = Player::all();
-        
 
         return view('games.edit', ['game' => $game, 'players' => $players]);
         
@@ -74,7 +78,6 @@ class GameController extends Controller
         
         // Update game
         $game = Game::findOrFail($game_id);
-        $game->winner_id = $request->winner_id;
         $game->player_id_1 = $request->player_id_1;
         $game->player_id_2 = $request->player_id_2;
         $game->update();
@@ -88,8 +91,6 @@ class GameController extends Controller
         Log::debug("winnerGamePage($game_id)");
         
         $game = Game::findOrFail($game_id);
-        // get names of players
-        //var_dump($game->players());
 
         return view('games.winner', ['game' => $game]);
         

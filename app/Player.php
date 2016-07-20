@@ -58,6 +58,9 @@ class Player extends Model
         return $gameCount - $wins;
     }
     
+    // Add rank attribute
+    // Used only in the leaderboard function as a way
+    // to temporarily add a rank for display purposes
     protected $rank = 0;
 
     public function getRank()
