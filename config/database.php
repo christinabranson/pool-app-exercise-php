@@ -66,6 +66,7 @@ return [
             'engine' => null,
         ],
 
+        /*
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),
@@ -77,8 +78,8 @@ return [
             'prefix' => '',
             'schema' => 'public',
         ],
-        
-        /*
+        */
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => parse_url(getenv("DATABASE_URL"))["host"],
@@ -89,7 +90,7 @@ return [
             'prefix'   => '',
             'schema'   => 'public',
         ],
-        */
+
 
     ],
 
