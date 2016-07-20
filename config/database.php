@@ -26,6 +26,7 @@ return [
     |
     */
 
+    // pgsql for heroku deploy
     'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
@@ -80,6 +81,7 @@ return [
         ],
         */
 
+        // pgsql settings for heroku deploy
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => parse_url(getenv("DATABASE_URL"))["host"],

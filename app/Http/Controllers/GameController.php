@@ -38,6 +38,9 @@ class GameController extends Controller
         $game = new Game();
         $game->player_1_id = $request->player_1_id;
         $game->player_2_id = $request->player_2_id;
+        // trying this out
+        // getting SQLSTATE[23502]: Not null violation when deploying to heroku
+        $game->winner_id = 0;
         $game->save();
         
         // Redirect to page to choose game winner
