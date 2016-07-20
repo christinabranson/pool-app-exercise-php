@@ -26,6 +26,7 @@ Route::get('/game/winner/{game_id}', 'GameController@winnerGamePage');
 Route::post('/game/winner/{game_id}', 'GameController@winnerGame');
 Route::get('/game/get/{game_id}', 'GameController@getGame');
 Route::get('/game/list', 'GameController@listGames');
+Route::get('/game/delete/{game_id}', 'GameController@deleteGamePage');
 Route::delete('/game/delete/{game_id}', 'GameController@deleteGame');
 
 // Player management

@@ -5,6 +5,9 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <p><a href="{{ url('player/admin') }}">&larr; View all players</a></p>
+    </div>
+    <div class="row">
         @if (count($player) > 0)
         <h1>Get Player: {{ $player->name }}</h1>
             <table>
@@ -20,8 +23,8 @@
                  <tr>
                     <td>{{ $player->player_id }}</td>
                     <td>{{ $player->name }}</td>
-                    <td>{{ $player->wins }}</td>
-                    <td>{{ $player->losses }}</td>
+                    <td>{{ $player->wins() }}</td>
+                    <td>{{ $player->losses() }}</td>
                  </tr>
               </tbody>
             </table>
@@ -51,11 +54,11 @@
                 @if (count($player->games()) > 0)
                     @foreach($player->games() as $game)
                         <tr>
-                            <td>{{ $game->game_id }}</td>
-                            <td>{{ $game->player1()->name }}</td>
-                            <td>{{ $game->player2()->name }}</td>
+                            <td><a href="{{ url('game/get/'.$game->game_id) }}">{{ $game->game_id }}</a></td>
+                            <td><a href="{{ url('player/get/'.$game->player_1_id) }}">{{ $game->player1()->name }}</a></td>
+                            <td><a href="{{ url('player/get/'.$game->player_2_id) }}">{{ $game->player2()->name }}</a></td>
                             @if (isset($game->winner()->name))
-                                <td>{{ $game->winner()->name }}</td>
+                                <td><a href="{{ url('player/get/'.$game->winner_id) }}">{{ $game->winner()->name }}</a></td>
                             @else
                                 <td>No winner yet! Choose winner <a href="{{ url('game/winner/'.$game->game_id) }}">here</a>.</td>
                             @endif

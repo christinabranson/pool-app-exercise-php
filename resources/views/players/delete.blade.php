@@ -5,6 +5,9 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <p><a href="{{ url('player/admin') }}">&larr; View all players</a></p>
+    </div>
+    <div class="row">
         @if (count($player) > 0)
         <h1>Delete Player: {{ $player->name }}</h1>
 
@@ -12,7 +15,7 @@
             {{ csrf_field() }}
             
             <p>Are you sure you want to delete <strong>{{ $player->name }}</strong>? This player has been in 
-            <strong>{{ sizeof($player->games()) }}</strong> games and all those games will be deleted.</p>
+            <strong>{{ sizeof($player->games()) }}</strong> games and all those games will be deleted. This action cannot be undone.</p>
             
             <button type="submit" id="submit" class="alert button">Submit</button>
             <input type="hidden" name="_method" value="DELETE">

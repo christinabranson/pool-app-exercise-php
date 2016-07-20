@@ -6,6 +6,17 @@
 <div class="container">
     <div class="row">
         <h1>New Player</h1>
+        
+        @if (count($errors) > 0)
+            <div class="alert callout">
+                <h3>Error!</h3>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <form id="newPlayer" method="POST" action="{{ url('player/new') }}">
             {{ csrf_field() }}

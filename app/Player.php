@@ -22,33 +22,51 @@ class Player extends Model
     }
     
     // Get player's games
-    // TODO: Make this work with Eloquent model instead of DB
-    public function games()
-    {
+    public function games() {
         Log::debug("games()");
         Log::debug("for player id: " .  $this->player_id);
-        $games = DB::table('games')
-                    ->where('player_1_id', $this->player_id)
-                    ->orWhere('player_2_id', $this->player_id)
-                    ->get();
         $games = Game::where('player_1_id', $this->player_id)
                     ->orWhere('player_2_id', $this->player_id)
                     ->get();
         return $games;
     }
     
-    // TODO: Function to add to winner's wins
-    public function addWin() {
-        $this->wins = $this->wins + 1;
-        $this->save();
+    // Get player's win count
+    public function wins() {
+        Log::debug("wins()");
+        Log::debug("for player id: " .  $this->player_id);
+        $wins = Game::where('winner_id', $this->player_id)->count();
+        return $wins;
     }
     
-    // TODO: Function to add to loser's losse
-    public function addLoss() {
-        $this->losses = $this->losses + 1;
-        $this->save(); 
+    // Get player's loss count
+    public function losses() {
+        Log::debug("losses()");
+        Log::debug("for player id: " .  $this->player_id);
+        
+        $wins = $this->wins();
+        
+        // remove games that haven't picked a winner yet
+        $filtered = $this->games()->filter(function ($game) {
+            return $game->winner_id != 0;
+        });
+        
+        $filtered->all();
+        $gameCount = sizeof($filtered);
+        
+        // return difference between game played and wins
+        return $gameCount - $wins;
     }
     
-    
-    // TODO: Accessor to modify times to something human readable
+    protected $rank = 0;
+
+    public function getRank()
+    {
+        return $this->rank;
+    }
+
+    public function setRank($value)
+    {
+        $this->rank = $value;
+    }
 }

@@ -5,7 +5,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h1>Choose Winner</h1>
+        <p><a href="{{ url('game/list') }}">&larr; View all games</a></p>
+    </div>
+    <div class="row">
+        <h1>Choose Winner: {{ $game->player1()->name }} vs {{ $game->player2()->name }}</h1>
 
         <form id="newGame" method="POST" action="{{ url('game/winner/'.$game->game_id) }}">
             {{ csrf_field() }}

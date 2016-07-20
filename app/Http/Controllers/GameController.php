@@ -10,25 +10,27 @@ use App\Player;
 
 class GameController extends Controller
 {
-    //
+    // Get the page to create a game
     public function newGamePage() {
         
         Log::debug("newGamePage()");
         
-        return view('games.new');
-
+        $players = Player::all();
         
+        return view('games.new', ['players' => $players]);
+
     } //newGamePage
     
-    //
+    // Create a game
     public function newGame(Request $request) {
         
         Log::debug("newGame(Request $request)");
         
         // Validate request; 2 players needed
+        // TODO: Players can't be the same
         $this->validate($request, [
             'player_1_id' => 'required',
-            'player_2_id' => 'required'
+            'player_2_id' => 'required|different:player_1_id'
         ]);
         
         Log::debug("new game passes validation?");
@@ -44,21 +46,28 @@ class GameController extends Controller
         return redirect('/game/winner/'.$game_id);
     } //newGame
     
-    //
+    // Get the page to edit a game
     public function editGamePage($game_id) {
         Log::debug("editGamePage($game_id)");
         
         $game = Game::findOrFail($game_id);
         
-        return view('games.edit', ['game' => $game]);
+        $players = Player::all();
+        
+
+        return view('games.edit', ['game' => $game, 'players' => $players]);
         
     } //editGamePage
     
-    //
+    // Edit a game
     public function editGame(Request $request, $game_id) {
         Log::debug("editGame(Request $request, $game_id)");
         
         // validate edit
+        $this->validate($request, [
+            'player_1_id' => 'required',
+            'player_2_id' => 'required|different:player_1_id'
+        ]);
         
         // Update game
         $game = Game::findOrFail($game_id);
@@ -71,7 +80,7 @@ class GameController extends Controller
         return redirect('game/get/'.$game_id);
     } //editGame
 
-    //
+    // Get the page to select the winner
     public function winnerGamePage($game_id) {
         Log::debug("winnerGamePage($game_id)");
         
@@ -83,7 +92,7 @@ class GameController extends Controller
         
     } //winnerGamePage
     
-    //
+    // Select the winner for a game
     public function winnerGame(Request $request, $game_id) {
         Log::debug("winnerGame(Request $request, $game_id)");
         
@@ -97,31 +106,13 @@ class GameController extends Controller
         if ($game->winner_id != $request->winner_id) {
             $game->winner_id = $request->winner_id;
             $game->update();
-            
-            // Update winner's win count and loser's lose count
-            // Needs checks so you can't spam a winner to increase their wins/losses
-            // More checks so that if a winner changes they're count is updated
-            // So we need a subtractWin and subtractLoss function, too
-            if ($game->winner_id == $game->player_1_id) {
-                $winner = Player::findOrFail($game->player_1_id);
-                $loser = Player::findOrFail($game->player_2_id);
-            } elseif ($game->winner_id == $game->player_2_id) {
-                $winner = Player::findOrFail($game->player_2_id);
-                $loser = Player::findOrFail($game->player_1_id);
-            } else {
-                Log::error("Something went wrong with the winner IDs!!!");
-                // should break here because something went wrong
-            }
-            
-            $winner->addWin();
-            $loser->addLoss();
         }
         
         return redirect('game/get/'.$game_id);
         
     } //winnerGame
     
-    //
+    // Get information for a single game
     public function getGame($game_id) {
         Log::debug("getGame($game_id)");
         $game = Game::findOrFail($game_id);
@@ -129,25 +120,33 @@ class GameController extends Controller
         return view('games.get', ['game' => $game]);
     } //getGame
     
-    //
+    // list all games
     public function listGames() {
 
         Log::debug("listGames()");
 
-        //$players = Player::all()->orderBy('wins', 'desc');
         $games = Game::all();
         
         return view('games.list', ['games' => $games]);
         
     } //listGames
     
-    //
+    // Delete a game page
+    public function deleteGamePage($game_id) {
+        Log::debug("deleteGame($game_id)");
+        
+        $game = Game::findOrFail($game_id);
+        
+        return view('games.delete', ['game' => $game]);
+        
+    } //deleteGamePage
+    
+    // Delete a game
     public function deleteGame($game_id) {
         Log::debug("deleteGame($game_id)");
         
         $game = Game::findOrFail($game_id);
-        // make sure game exists..
-        $game->destroy();
+        $game->delete();
         
         // redirect to list of games
         return redirect('game/list');

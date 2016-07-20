@@ -22,8 +22,8 @@
                  <tr>
                     <td>{{ $player->player_id }}</td>
                     <td><a href="{{ url('/player/get/'.$player->player_id) }}">{{ $player->name }}</a></td>
-                    <td>{{ $player->wins }}</td>
-                    <td>{{ $player->losses }}</td>
+                    <td>{{ $player->wins() }}</td>
+                    <td>{{ $player->losses() }}</td>
                     <td>
                         <a class="button" href="{{ url('/player/get/'.$player->player_id) }}">View Player Info</a>
                         <a class="success button" href="{{ url('/player/edit/'.$player->player_id) }}">Edit Player</a>

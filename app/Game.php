@@ -45,7 +45,4 @@ class Game extends Model
         $player = Player::find($this->winner_id);
         return $player;
     }
-    
-    
-    
 }

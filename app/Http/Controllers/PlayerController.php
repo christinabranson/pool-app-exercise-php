@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use Log;
-use DB;
 use App\Player;
 
 class PlayerController extends Controller
@@ -17,9 +16,34 @@ class PlayerController extends Controller
         
         Log::debug("leaderboard");
         
-        $players = Player::orderBy('wins', 'desc')->get();
+        $players = Player::all();
+        
+        // sort all players by wins and losses
+        $sortedPlayers = $players->sort(function (Player $player1, Player $player2) {
+            if ( $player1->wins() > $player2->wins() ) {
+                return -1;
+            } elseif ( $player1->wins() < $player2->wins() ) {
+                return 1;
+            } elseif (  $player1->wins() == $player2->wins() ) {
+                if ( $player1->losses() < $player2->losses() ) {
+                    return -1;
+                } elseif ( $player1->losses() > $player2->losses() ) {
+                    return 1;
+                } elseif ( $player1->losses() == $player2->losses() ) {
+                    return 0;
+                }
+            }
+            return 0;
+        });
+        
+        // add rank
+        $rank = 1;
+        foreach($sortedPlayers as $player) {
+            $player->setRank($rank);
+            $rank++;
+        }
 
-        return view('players.leaderboard', ['players' => $players]);
+        return view('players.leaderboard', ['players' =>  $sortedPlayers]);
         
     } //leaderboard
     
@@ -46,7 +70,7 @@ class PlayerController extends Controller
         $player->name = $request->name;
         $player->save();
         
-        
+        return redirect('/');
     } //newPlayer
     
     // Return view to edit player
@@ -124,30 +148,9 @@ class PlayerController extends Controller
         Log::debug("admin()");
         
         $players = Player::all();
-        
 
         return view('players.admin', ['players' => $players]);
         
     } //leaderboard
-    
-    // Autocomplete player name search
-    public function autocomplete($search) {
-        Log::debug("search($search)");
-        $users = DB::table('players')
-                    ->where('name', 'like', '%'.$search.'%')
-                    ->get();
-        //Log::debug(print_r($users));
-        return $users;
-    } //autocomplete
-    
-    // Player name search
-    public function search($search) {
-        Log::debug("search($search)");
-        $users = DB::table('players')
-                    ->where('name', 'like', '%'.$search.'%')
-                    ->get();
-        Log::debug(print_r($users));
-        return $users;
-    } //search
     
 }
