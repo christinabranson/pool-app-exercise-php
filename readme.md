@@ -17,8 +17,6 @@
 | ---- | ---- | ---- |
 | player_id | increments | ID of player |
 | name | string | Name of player |
-| wins | integer | Number of player wins |
-| losses | integer | Number of player losses |
 | timestamps |--| Created and modified |
 
 Relationships:
@@ -90,4 +88,4 @@ Relationships:
 - [ ] Add function to autocomplete player names
 - [ ] Show rank on leaderboard
 - [ ] Function to show player/game count
-- [ ] 
+- [ ] Sort winner by maximizing wins and minimizing losses
